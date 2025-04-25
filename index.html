@@ -161,14 +161,14 @@
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
 
-      noButton.style.left = ${x}px;
-      noButton.style.top = ${y}px;
+      noButton.style.left = `${x}px`;
+      noButton.style.top = `${y}px`;
     });
 
     document.getElementById("yes").addEventListener("click", function () {
       const müzik = document.getElementById("müzik");
       müzik.play();
-      alert('Yasasiinnn! ❤');
+      alert('Yasasiinnn! ❤️');
     });
 
     const particleContainer = document.querySelector('.particles');
