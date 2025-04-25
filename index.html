@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> tuanaa (:</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanışalım mı?</title>
   <style>
     body {
       display: flex;
@@ -31,22 +31,12 @@
       position: relative;
       max-width: 400px;
       margin: 20px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     .image-container img {
       width: 100%;
       border-radius: 20px;
       display: block;
-    }
-
-    .buttons {
-      margin-top: 20px;
-      position: relative;
-      width: 100%;
-      height: 60px;
     }
 
     button {
@@ -57,21 +47,28 @@
       cursor: pointer;
       transition: 0.3s;
       z-index: 2;
-      position: absolute;
     }
 
     #yes {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
       background-color: #4CAF50;
       color: white;
-      left: 10px;
-      top: 0;
     }
 
     #no {
-      background-color: #FF0000;
-      color: white;
+      position: fixed;
       left: 150px;
       top: 0;
+      background-color: #FF0000;
+      color: white;
+      transition: left 0.2s, top 0.2s;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 2;
     }
 
     .particles {
@@ -117,18 +114,6 @@
       .image-container {
         max-width: 300px;
       }
-
-      .buttons {
-        height: 80px;
-      }
-
-      #yes {
-        left: 0;
-      }
-
-      #no {
-        left: 120px;
-      }
     }
   </style>
 </head>
@@ -144,25 +129,32 @@
 
   <div class="image-container">
     <img src="resim.jpg" alt="Tatlı bir görsel" />
-    <div class="buttons">
-      <button id="yes">Evet</button>
-      <button id="no">Hayır</button>
-    </div>
+    <button id="yes">Evet</button>
   </div>
+
+  <button id="no">Hayır</button>
 
   <script>
     const noButton = document.getElementById("no");
 
-    noButton.addEventListener("mouseover", function () {
-      const container = document.querySelector(".buttons");
-      const maxX = container.offsetWidth - noButton.offsetWidth;
-      const maxY = container.offsetHeight - noButton.offsetHeight;
+    function moveNoButton() {
+      const maxX = window.innerWidth - noButton.offsetWidth;
+      const maxY = window.innerHeight - noButton.offsetHeight;
 
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
 
       noButton.style.left = `${x}px`;
       noButton.style.top = `${y}px`;
+    }
+
+    // Masaüstü: Fareyle üzerine gelince kaçar
+    noButton.addEventListener("mouseover", moveNoButton);
+
+    // Mobil: Dokununca kaçar
+    noButton.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+      moveNoButton();
     });
 
     document.getElementById("yes").addEventListener("click", function () {
