@@ -144,23 +144,26 @@
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
 
-      noButton.style.left = `${x}px`;
-      noButton.style.top = `${y}px`;
+      noButton.style.left = ${x}px;
+      noButton.style.top = ${y}px;
     }
 
-    // Masaüstü: Fareyle üzerine gelince kaçar
+    // Masaüstü için (fare)
     noButton.addEventListener("mouseover", moveNoButton);
 
-    // Mobil: Dokununca kaçar
+    // Mobil için (dokunma)
     noButton.addEventListener("touchstart", function (e) {
-      e.preventDefault();
+      e.preventDefault();     // Dokunma olayını durdur
       moveNoButton();
-    });
+
+      // Bu işlemden sonra tıklanmasını da engelle
+      noButton.onclick = (e) => e.preventDefault();
+    }, { passive: false });
 
     document.getElementById("yes").addEventListener("click", function () {
       const müzik = document.getElementById("müzik");
       müzik.play();
-      alert('Yasasiinnn! ❤️');
+      alert('Yasasiinnn! ❤');
     });
 
     const particleContainer = document.querySelector('.particles');
