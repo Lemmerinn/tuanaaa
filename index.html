@@ -148,17 +148,14 @@
       noButton.style.top = ${y}px;
     }
 
-    // Masaüstü için (fare)
+    // Masaüstü: Fareyle üzerine gelince kaçar
     noButton.addEventListener("mouseover", moveNoButton);
 
-    // Mobil için (dokunma)
+    // Mobil: Dokununca kaçar
     noButton.addEventListener("touchstart", function (e) {
-      e.preventDefault();     // Dokunma olayını durdur
+      e.preventDefault();
       moveNoButton();
-
-      // Bu işlemden sonra tıklanmasını da engelle
-      noButton.onclick = (e) => e.preventDefault();
-    }, { passive: false });
+    });
 
     document.getElementById("yes").addEventListener("click", function () {
       const müzik = document.getElementById("müzik");
